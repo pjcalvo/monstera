@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Data - Monstera App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .bold {
+            font-weight: 600;
+            font-size: xx-large;
+        }
+        .green {
+            color: green;
+        }
+    
+        .red {
+            color: red;
+        }
+        .sensor-data {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .metadata {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sensor Data - Monstera App - Latest</h1>
+    <a href="/historic">See historic values</a>
+    <h2>Latest Reading</h2>
+    <div class="sensor-data">
+        <p class="metadata">Sensor Metadata:</p>
+        <p>{{ sensor_metadata }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Timestamp:</p>
+        <p>{{ timestamp }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Min Value:</p>
+        <p>{{ min_value }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Max Value:</p>
+        <p>{{ max_value }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Value:</p>
+        <p>{{ value }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Percentage:</p>
+        <p>{{ percentage }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Plant Metadata:</p>
+        <p>{{ plant_metadata }}</p>
+    </div>
+    <div class="sensor-data">
+        <p class="metadata">Require Water:</p>
+        <p class="bold {{ 'red' if percentage < 40 else 'green' }}">{{ 'Yes' if percentage < 40 else 'No' }}</p>
+    </div>    
+    <script>
+        setTimeout(function() {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

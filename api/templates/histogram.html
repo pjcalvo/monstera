@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monstera Historic Humidity %</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #histogram {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sensor Data - Monstera App - Historic</h1>
+    <a href="/">See latest values</a>
+    <div id="histogram"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Fetch data from your database and populate the histogram
+        // Replace the 'data' variable with your actual data from the database
+
+       // Fetch data passed from Flask using Jinja and populate the histogram
+       var data = {{ data | tojson | safe }};
+
+       var timestamps = data.map(entry => entry.timestamp);
+       var values = data.map(entry => entry.percentage);
+
+        var layout = {
+            title: 'Monstera Historic Humidity %',
+            xaxis: { title: 'Timestamp' },
+            yaxis: { title: 'Values' },
+            bargap: 1,
+        };
+
+        var trace = {
+            x: timestamps,
+            y: values,
+            mode: "lines",
+            type: "scatter"
+        };
+
+        Plotly.newPlot('histogram', [trace], layout);
+    </script>
+</body>
+</html>

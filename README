@@ -1,0 +1,48 @@
+# Raspberry Pi Pico Plant Humidity Monitoring
+
+This project aims to create a Raspberry Pi Pico-based solution for monitoring the humidity levels in plants and sending the data wirelessly to a Flask server. The project consists of two main components: an API server built with Flask and the code for the Raspberry Pi Pico.
+
+## See it working
+
+The project has been deployed to fly, so you could see live values at:
+
+[latest](https://monstera.fly.dev/)
+[historic](https://monstera.fly.dev/historic)
+
+## Folder Structure
+
+The project follows a 2-folder structure:
+
+- `/api`: Contains the Flask server code responsible for receiving and storing the humidity metrics from the Raspberry Pi Pico.
+- `/pico`: Contains the code for the Raspberry Pi Pico that reads humidity values from the sensor and sends them to the Flask server.
+
+## Getting Started
+
+To set up the project, follow these steps:
+
+### API Setup
+
+1. Navigate to the `/api` directory: `cd api`
+2. Install the required Python packages: `pip install -r requirements.txt`
+3. Start the gunicorn server (flask prod server): `gunicorn app:app`
+
+The Flask server will start running on `http://localhost:8000` and will be ready to receive humidity metrics from the Raspberry Pi Pico.
+
+### Raspberry Pi Pico Setup
+
+To get started with the installation of the firmware please follow [this guide](https://www.tomshardware.com/how-to/raspberry-pi-pico-setup)
+
+1. Connect the humidity sensor to the Raspberry Pi Pico according to the wiring instructions provided.
+2. Copy the code from the `/pico` directory to your Raspberry Pi Pico board.
+3. Adjust the code if necessary to match the pin configuration and sensor type you are using.
+4. Power up the Raspberry Pi Pico.
+
+The Raspberry Pi Pico will start reading the humidity values from the sensor and send them wirelessly to the Flask server.
+
+## Contributing
+
+Contributions are welcome! If you have any improvements or suggestions, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
