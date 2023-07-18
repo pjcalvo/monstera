@@ -5,6 +5,7 @@ load_dotenv()
 from flask import Flask, request, render_template, abort
 from datetime import datetime
 from store.store import store_client
+from store.condensed import get_condensed_data_every
 from models.reading import Reading
 from pymongo import DESCENDING
 
@@ -31,8 +32,11 @@ def homepage():
         return render_template('no_readings.html')
     
 @app.route('/historic', methods=['GET'])
-def historic():    
-    data = list(readings.find({}, {'_id': 0, 'timestamp': 1, 'percentage': 1}))
+def historic():
+    interval = request.args.get('interval')
+    timeframe = request.args.get('timeframe')
+
+    data = get_condensed_data_every(readings, timeframe, interval)
     # Pass the data to the template for rendering
     if len(data) > 0:
         return render_template('histogram.html', data=data)
